@@ -1,0 +1,39 @@
+<!-- <!DOCTYPE html SYSTEM "about:legacy-compat"> -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ name }}'s Message Board</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h2>
+        <img alt="Avatar" class="avatar" src="{{ url_for('static', filename='images/avatar.png') }}">
+        {{ name }}'s Message Board
+    </h2>
+
+    <div class="hello-form">
+        <form action="/msg-board" method="post"            class="form" role="form">
+            <div class="form-group required"><label class="form-control-label" for="name">Name</label>
+                    <input class="form-control" id="name" name="name" required type="text" value="">
+            </div>
+            <div class="form-group required"><label class="form-control-label" for="body">Message</label>
+                    <textarea class="form-control" id="body" name="body" required></textarea>
+            </div>
+            <input class="btn btn-secondary" id="submit" name="submit" type="submit" value="Submit">
+        </form>
+    </div>
+
+    <p>{{ message_board|length }} Messages</p>
+    <ul class="movie-list">
+        {% for message in message_board %}
+        <li>{{ message.name }} : {{ "     " + message.body }}</li>
+        {% endfor %}
+    </ul>
+    <img alt="Walking Totoro" class="totoro" src="{{ url_for('static', filename='images/totoro.gif') }}">
+    <footer>
+        <small>&copy; 2018 <a href="http://helloflask.com/tutorial">HelloFlask</a></small>
+	</footer>
+</body>
+</html>
